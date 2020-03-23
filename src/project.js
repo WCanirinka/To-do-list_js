@@ -1,19 +1,19 @@
 const project = (name) => {
-    let toDos = [];
+  let toDos = [];
 
-    const addToDo = (todo) => {
-        toDos = toDos.concat(todo);
-    }
+  const addToDo = (todo) => {
+    toDos = toDos.concat(todo);
+  };
 
-    const getToDo = () => {
-        return toDos;
-    }
+  const getToDo = () => toDos;
 
-    const removeToDo = (index) => {
-        toDos = toDos.filter((element, idx) => index !== idx);
-    }
+  const removeToDo = (index) => {
+    toDos = toDos.filter((element, idx) => index !== idx);
+  };
 
-    return { name, addToDo, getToDo, removeToDo };
+  return {
+    name, addToDo, getToDo, removeToDo,
+  };
 };
 
 export default project;

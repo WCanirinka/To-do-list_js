@@ -97,14 +97,14 @@ const dom = (() => {
     const title = document.createElement('input');
     title.setAttribute('type', 'text');
     title.classList.add('todo-item-title');
-    title.textContent = todo.title;
+    title.value = todo.title;
     const description = document.createElement('textarea');
     description.classList.add('todo-item-desc');
-    description.innerText = todo.description;
+    description.value = todo.description;
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
     date.classList.add('due-date');
-    date.innerText = todo.dueDate;
+    date.value = todo.dueDate;
     const priority = document.createElement('select');
     priority.classList.add('todo-item-priority');
     const high = document.createElement('option');
@@ -116,16 +116,11 @@ const dom = (() => {
     const btn = document.createElement('button');
     btn.innerText = 'Edit';
 
-    const values = {
-      title: title.value,
-      description: description.value,
-      priority: priority.value,
-      dueDate: date.value,
-    };
-
     btn.addEventListener('click', () => {
-      toDoList.updateToDoItem(name, index, values);
+      toDoList.updateToDoItem(name, index, title.value, description.value,
+        date.value, priority.value);
       displayProject(name);
+      container.remove();
     });
     modal.appendChild(title);
     modal.appendChild(description);
@@ -143,6 +138,15 @@ const dom = (() => {
     singleTodo.classList.add('single-todo');
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
+    if (todo.completed) {
+      checkbox.setAttribute('checked', true);
+    }
+
+    checkbox.addEventListener('change', () => {
+      toDoList.updateStatus(name, index);
+      displayProject(name);
+    });
+
     checkbox.classList.add('check-box');
     const title = document.createElement('h3');
     title.classList.add('title');

@@ -16,8 +16,8 @@ const toDoList = (() => {
 
   const updateStatus = (name, index) => {
     const toDoLists = JSON.parse(localStorage.getItem('todolist'));
-    const existingProject = toDoLists.find((element) => element === name);
-    const toDoItem = existingProject.toDos.find((element, idx) => index === idx);
+    const existingProject = toDoLists.find((element) => element.name === name);
+    const toDoItem = existingProject.todos.find((element, idx) => index === idx);
     toDoItem.completed = !toDoItem.completed;
     localStorage.setItem('todolist', JSON.stringify(toDoLists));
   };
@@ -51,18 +51,16 @@ const toDoList = (() => {
     localStorage.setItem('todolist', JSON.stringify(toDoLists));
   };
 
-  const updateToDoItem = (project, index, values) => {
+  const updateToDoItem = (project, index, title, description, date, priority) => {
     const toDoLists = JSON.parse(localStorage.getItem('todolist'));
     const existingProject = toDoLists.find((element) => element.name === project);
     const toDoItem = existingProject.todos.find((element, idx) => index === idx);
-    const {
-      title, description, priority, dueDate,
-    } = values;
 
     toDoItem.title = title;
     toDoItem.description = description;
     toDoItem.priority = priority;
-    toDoItem.dueDate = dueDate;
+    toDoItem.dueDate = date;
+
     localStorage.setItem('todolist', JSON.stringify(toDoLists));
   };
 

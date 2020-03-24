@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+import { compareAsc, format } from 'date-fns';
 import toDoList from './todolist';
 
 const content = document.querySelector('#content');
@@ -27,11 +28,18 @@ const dom = (() => {
     }
   };
 
+  const removeModal = () => {
+    const modal = document.querySelector('.modal-container');
+
+    modal.remove();
+  };
+
   const showNewProjectModal = () => {
     const container = document.createElement('div');
     container.classList.add('modal-container');
     const backDrop = document.createElement('div');
     backDrop.classList.add('back-drop');
+    backDrop.addEventListener('click', removeModal);
     const modal = document.createElement('div');
     modal.classList.add('modal');
     const textBox = document.createElement('input');
@@ -55,6 +63,7 @@ const dom = (() => {
     container.classList.add('modal-container');
     const backDrop = document.createElement('div');
     backDrop.classList.add('back-drop');
+    backDrop.addEventListener('click', removeModal);
     const modal = document.createElement('div');
     modal.classList.add('modal');
     const title = document.createElement('p');
@@ -65,7 +74,8 @@ const dom = (() => {
     description.innerText = todo.description;
     const date = document.createElement('p');
     date.classList.add('view-date');
-    date.innerText = new Date(todo.dueDate);
+    // date.innerText = new Date(todo.dueDate);
+    date.innerText = format(new Date(todo.dueDate), 'PPPP');
     const priority = document.createElement('p');
     priority.classList.add('view-priority');
     priority.innerText = todo.priority;
@@ -93,6 +103,7 @@ const dom = (() => {
     container.classList.add('modal-container');
     const backDrop = document.createElement('div');
     backDrop.classList.add('back-drop');
+    backDrop.addEventListener('click', removeModal);
     const modal = document.createElement('div');
     modal.classList.add('modal');
     const title = document.createElement('input');
@@ -226,6 +237,7 @@ const dom = (() => {
     container.classList.add('modal-container');
     const backDrop = document.createElement('div');
     backDrop.classList.add('back-drop');
+    backDrop.addEventListener('click', removeModal);
     const modal = document.createElement('div');
     modal.classList.add('modal');
     const title = document.createElement('input');
@@ -318,7 +330,7 @@ const dom = (() => {
   };
 
   return {
-    renderProjects, addNewProject, generateSelector,
+    renderProjects,
   };
 })();
 

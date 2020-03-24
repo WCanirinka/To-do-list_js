@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-use-before-define */
 import { format } from 'date-fns';
 import toDoList from './todolist';

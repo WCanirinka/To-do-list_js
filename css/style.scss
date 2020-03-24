@@ -1,0 +1,259 @@
+body {
+    background-color: #f2f2f2;
+}
+
+#content {
+    width: 70%;
+    margin: 0 auto;
+
+    h2 {
+        text-align: center;
+        margin-top: 25px;
+
+    }
+}
+
+#projects {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin: 10px auto;
+
+    .new-project-btn {
+        background-color: #00a82d;
+        color: white;
+        border: none;
+        padding: 7px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: white;
+            color: #00a82d;
+        }
+    }
+}
+
+.select-box {
+    color: #00a82d;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+
+    .back-drop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: black;
+        opacity: 0.7;
+        z-index: 0;
+    }
+
+    .modal {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        width: 400px;
+        background-color: #fff;
+        z-index: 3;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 10px;
+
+        .todo-item-title {
+            width: 80%;
+            margin: 10px auto;
+            border: 1px solid #00a82d;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .todo-item-desc {
+            width: 80%;
+            height: 50px;
+            margin: 10px auto;
+            border: 1px solid #00a82d;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .todo-item-priority {
+            width: 85%;
+            margin: 10px auto;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .due-date {
+            width: 85%;
+            margin: 10px auto;
+            border: 1px solid #00a82d;
+            border-radius: 4px;
+        }
+
+        .create-todo {
+            background-color: #00a82d;
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: white;
+                color: #00a82d;
+            }
+        }
+
+        .edit {
+            background-color: #00a82d;
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: white;
+                color: #00a82d;
+            }
+        }
+
+        .view-title {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .view-desc {
+            font-size: 16px;
+        }
+
+        .view-date {
+            font-size: 14px;
+        }
+
+        .view-priority {
+            background-color: #cd7f32;
+            width: 40px;
+            margin: 0 auto;
+            padding: 2px 10px;
+            font-size: 13px;
+            border-radius: 4px;
+        }
+
+        .completed-label {
+            background-color: #a80000;
+            width: 60px;
+            margin: 0 auto;
+            padding: 2px 10px;
+            font-size: 13px;
+            border-radius: 4px;
+        }
+
+        .completed-task {
+            background-color: #00a82d;
+        }
+    }
+
+    .new-project-text-box {
+        width: 80%;
+        margin: 10px auto;
+        padding: 7px;
+        border: 1px solid #00a82d;
+        border-radius: 4px;
+    }
+
+    .save-btn {
+        background-color: #00a82d;
+        color: white;
+        border: none;
+        padding: 7px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: white;
+            color: #00a82d;
+            border: 1px solid #00a82d;
+            padding: 6px 14px;
+        }
+    }
+}
+
+#todo-items {
+    width: 80%;
+    margin: 20px auto;
+
+    .project-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .new-todo-btn {
+        color: black;
+        background-color: #a9d80d;
+        border: none;
+        padding: 10px;
+        align-self: center;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .header-title {
+        font-size: 22px;
+    }
+
+    .single-todo{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        background-color: white;
+        padding: 0 30px;
+
+        .icons{
+            width: 150px;
+            display: flex;
+            justify-content: space-between;
+
+            .view-btn{
+                font-size: 25px;
+                color: #00a82d;
+                cursor: pointer;
+            }
+
+            .edit-btn{
+                font-size: 25px;
+                color: #0027a8;
+                cursor: pointer;
+            }
+
+            .delete-btn{
+                font-size: 25px;
+                color: #a80000;
+                cursor: pointer;
+            }
+        }
+
+        .priority {
+            background-color: #cd7f32;
+            padding: 2px 10px;
+            font-size: 13px;
+            border-radius: 4px;
+        }
+    }
+}

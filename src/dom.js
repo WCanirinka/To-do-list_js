@@ -21,7 +21,7 @@ const dom = (() => {
       alert('Project already exists');
     } else {
       toDoList.addProject(projectName);
-      const modal = document.querySelector('.modal');
+      const modal = document.querySelector('.modal-container');
       modal.remove();
       renderProjects();
     }
@@ -37,6 +37,7 @@ const dom = (() => {
     const textBox = document.createElement('input');
     textBox.setAttribute('type', 'text');
     textBox.classList.add('new-project-text-box');
+    textBox.setAttribute('placeholder', 'Project Name');
     const saveBtn = document.createElement('button');
     saveBtn.innerText = 'Create Project';
     saveBtn.classList.add('save-btn');
@@ -80,9 +81,9 @@ const dom = (() => {
     modal.appendChild(description);
     modal.appendChild(priority);
     modal.appendChild(date);
+    modal.appendChild(completed);
     container.appendChild(backDrop);
     container.appendChild(modal);
-    container.appendChild(completed);
 
     content.appendChild(container);
   };
@@ -114,6 +115,7 @@ const dom = (() => {
     priority.appendChild(high);
     priority.appendChild(low);
     const btn = document.createElement('button');
+    btn.classList.add('edit');
     btn.innerText = 'Edit';
 
     btn.addEventListener('click', () => {
@@ -157,14 +159,17 @@ const dom = (() => {
     const viewBtn = document.createElement('i');
     viewBtn.classList.add('fa');
     viewBtn.classList.add('fa-eye');
+    viewBtn.classList.add('view-btn');
 
     const editBtn = document.createElement('i');
     editBtn.classList.add('fa');
     editBtn.classList.add('fa-pencil-square-o');
+    editBtn.classList.add('edit-btn');
 
     const deleteBtn = document.createElement('i');
     deleteBtn.classList.add('fa');
     deleteBtn.classList.add('fa-trash');
+    deleteBtn.classList.add('delete-btn');
 
     deleteBtn.addEventListener('click', () => {
       toDoList.deleteToDoItem(name, index);
@@ -175,12 +180,16 @@ const dom = (() => {
 
     viewBtn.addEventListener('click', () => showViewModal(todo));
 
+    const icons = document.createElement('div');
+    icons.classList.add('icons');
+
     singleTodo.appendChild(checkbox);
     singleTodo.appendChild(title);
     singleTodo.appendChild(priority);
-    singleTodo.appendChild(viewBtn);
-    singleTodo.appendChild(editBtn);
-    singleTodo.appendChild(deleteBtn);
+    icons.appendChild(viewBtn);
+    icons.appendChild(editBtn);
+    icons.appendChild(deleteBtn);
+    singleTodo.appendChild(icons);
 
     return singleTodo;
   };
@@ -188,6 +197,7 @@ const dom = (() => {
   const displayProject = projectName => {
     todoItems.innerHTML = '';
     const projectHeader = document.createElement('div');
+    projectHeader.classList.add('project-header');
     const name = document.createElement('h3');
     name.classList.add('header-title');
     name.innerText = projectName;
@@ -220,21 +230,30 @@ const dom = (() => {
     modal.classList.add('modal');
     const title = document.createElement('input');
     title.setAttribute('type', 'text');
+    title.setAttribute('placeholder', 'Title');
     title.classList.add('todo-item-title');
     const description = document.createElement('textarea');
     description.classList.add('todo-item-desc');
+    description.setAttribute('placeholder', 'Description');
     const date = document.createElement('input');
     date.setAttribute('type', 'date');
+    date.setAttribute('placeholder', 'Date');
     date.classList.add('due-date');
     const priority = document.createElement('select');
     priority.classList.add('todo-item-priority');
+    const defaultText = document.createElement('option');
+    defaultText.text = 'Priority';
+    defaultText.setAttribute('disabled', true);
+    defaultText.setAttribute('selected', true);
     const high = document.createElement('option');
     high.text = 'High';
     const low = document.createElement('option');
     low.text = 'Low';
+    priority.appendChild(defaultText);
     priority.appendChild(high);
     priority.appendChild(low);
     const btn = document.createElement('button');
+    btn.classList.add('create-todo');
     btn.innerText = 'Create Todo';
     btn.addEventListener('click', () => {
       toDoList.addToDoItem(

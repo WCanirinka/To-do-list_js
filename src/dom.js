@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { compareAsc, format } from 'date-fns';
+import { format } from 'date-fns';
 import toDoList from './todolist';
 
 const content = document.querySelector('#content');

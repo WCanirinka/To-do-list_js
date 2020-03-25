@@ -1,10 +1,12 @@
 /* eslint-disable no-use-before-define */
 // eslint-disable-next-line import/no-unresolved
 import { format } from 'date-fns';
-import toDoList from './todolist';
+
+import todoItem from './todoitem';
+import project from './project';
 
 const content = document.querySelector('#content');
-const project = document.querySelector('#projects');
+const projects = document.querySelector('#projects');
 const todoItems = document.querySelector('#todo-items');
 
 const dom = (() => {
@@ -22,7 +24,7 @@ const dom = (() => {
       // eslint-disable-next-line no-alert
       alert('Project already exists');
     } else {
-      toDoList.addProject(projectName);
+      project.addProject(projectName);
       const modal = document.querySelector('.modal-container');
       modal.remove();
       renderProjects();
@@ -131,7 +133,7 @@ const dom = (() => {
     btn.innerText = 'Edit';
 
     btn.addEventListener('click', () => {
-      toDoList.updateToDoItem(name, index, title.value, description.value,
+      todoItem.updateToDoItem(name, index, title.value, description.value,
         date.value, priority.value);
       displayProject(name);
       container.remove();
@@ -157,7 +159,7 @@ const dom = (() => {
     }
 
     checkbox.addEventListener('change', () => {
-      toDoList.updateStatus(name, index);
+      todoItem.updateTodoItemStatus(name, index);
       displayProject(name);
     });
 
@@ -184,7 +186,7 @@ const dom = (() => {
     deleteBtn.classList.add('delete-btn');
 
     deleteBtn.addEventListener('click', () => {
-      toDoList.deleteToDoItem(name, index);
+      todoItem.deleteToDoItem(name, index);
       displayProject(name);
     });
 
@@ -269,7 +271,7 @@ const dom = (() => {
     btn.classList.add('create-todo');
     btn.innerText = 'Create Todo';
     btn.addEventListener('click', () => {
-      toDoList.addToDoItem(
+      todoItem.addToDoItem(
         name,
         title.value,
         description.value,
@@ -323,11 +325,11 @@ const dom = (() => {
   };
 
   const renderProjects = () => {
-    project.innerHTML = '';
+    projects.innerHTML = '';
     const newProject = generateSelector();
     const addProjectBtn = addNewProject();
-    project.appendChild(newProject);
-    project.appendChild(addProjectBtn);
+    projects.appendChild(newProject);
+    projects.appendChild(addProjectBtn);
   };
 
   return {

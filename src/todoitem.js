@@ -1,20 +1,7 @@
-import project from './project';
+import TodoItem from './models/todoitem';
 
-const toDoList = (() => {
-  const addProject = (name) => {
-    const newProject = project(name);
-    let toDoLists = JSON.parse(localStorage.getItem('todolist'));
-    toDoLists = toDoLists.concat(newProject);
-    localStorage.setItem('todolist', JSON.stringify(toDoLists));
-  };
-
-  const deleteProject = (name) => {
-    let toDoLists = JSON.parse(localStorage.getItem('todolist'));
-    toDoLists = toDoLists.filter((project) => project === name);
-    localStorage.setItem('todolist', JSON.stringify(toDoLists));
-  };
-
-  const updateStatus = (name, index) => {
+const toDoItem = (() => {
+  const updateTodoItemStatus = (name, index) => {
     const toDoLists = JSON.parse(localStorage.getItem('todolist'));
     const existingProject = toDoLists.find((element) => element.name === name);
     const toDoItem = existingProject.todos.find((element, idx) => index === idx);
@@ -22,10 +9,9 @@ const toDoList = (() => {
     localStorage.setItem('todolist', JSON.stringify(toDoLists));
   };
 
-  const addToDoItem = (project, title, description, priority, dueDate, completed) => {
-    const newToDo = {
-      title, description, priority, dueDate, completed,
-    };
+  const addToDoItem = (project, title, description, priority, dueDate) => {
+    const newToDo = new TodoItem(title, description, dueDate, priority);
+
     const toDoLists = JSON.parse(localStorage.getItem('todolist'));
 
     const existingProject = toDoLists.find((element) => element.name === project);
@@ -65,8 +51,11 @@ const toDoList = (() => {
   };
 
   return {
-    addProject, deleteProject, updateStatus, addToDoItem, deleteToDoItem, updateToDoItem,
+    updateTodoItemStatus,
+    addToDoItem,
+    deleteToDoItem,
+    updateToDoItem,
   };
 })();
 
-export default toDoList;
+export default toDoItem;
